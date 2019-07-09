@@ -11,11 +11,14 @@ async function main() {
   const api = await ApiPromise.create({
     types: {
       Kitty: "[u8; 16]",
-      KittyIndex: "u32"
+      KittyIndex: "u32",
+      KittyLinkedItem: {
+        prev: "Option<KittyIndex>",
+        next: "Option<KittyIndex>"
+      }
     },
     provider
   });
-
   const keyring = new Keyring({ type: "sr25519" });
   const alice = keyring.addFromUri("//Alice");
   // Create a extrinsic

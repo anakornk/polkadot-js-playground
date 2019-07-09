@@ -11,7 +11,11 @@ async function main() {
   const api = await ApiPromise.create({
     types: {
       Kitty: "[u8; 16]",
-      KittyIndex: "u32"
+      KittyIndex: "u32",
+      KittyLinkedItem: {
+        prev: 'Option<KittyIndex>',
+        next: 'Option<KittyIndex>'
+      }
     },
     provider
   });
